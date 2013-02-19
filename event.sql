@@ -1,21 +1,4 @@
--- phpMyAdmin SQL Dump
--- version 3.2.0.1
--- http://www.phpmyadmin.net
---
--- Host: localhost
--- Generation Time: Apr 23, 2010 at 06:01 PM
--- Server version: 5.1.36
--- PHP Version: 5.3.0
-
-SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
-
--- --------------------------------------------------------
-
---
--- Table structure for table `events`
---
-
-CREATE TABLE IF NOT EXISTS `events` (
+CREATE TABLE IF NOT EXISTS `phpvms_events` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `date` date NOT NULL DEFAULT '0000-00-00',
   `time` time NOT NULL DEFAULT '00:00:00',
@@ -31,26 +14,14 @@ CREATE TABLE IF NOT EXISTS `events` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
--- --------------------------------------------------------
-
---
--- Table structure for table `events_pilotranks`
---
-
-CREATE TABLE IF NOT EXISTS `events_pilotranks` (
+CREATE TABLE IF NOT EXISTS `phpvms_events_pilotranks` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `pilot_id` int(11) NOT NULL,
   `ranking` int(11) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
--- --------------------------------------------------------
-
---
--- Table structure for table `events_signups`
---
-
-CREATE TABLE IF NOT EXISTS `events_signups` (
+CREATE TABLE IF NOT EXISTS `phpvms_events_signups` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `event_id` int(11) NOT NULL,
   `pilot_id` int(11) NOT NULL,
