@@ -1,4 +1,4 @@
-EVENTBooking 1.3
+EVENTBooking 2.0
 
 phpVMS module to create and manage fly-in events for your phpVMS based virtual airline.
 
@@ -19,7 +19,7 @@ Install:
 -unzip the package and place the files as structured in your root phpVMS install.
 -use the event.sql file to create the tables needed in your sql database using phpmyadmin or similar.
 -create a link in your admin navigation panel
-I put it on line 54 in admin/lib/layout/header.tpl
+I put it on line 54 in admin/lib/layout/header.php
 
 <li><a href="<?php echo SITE_URL?>/admin/index.php/events_admin">Events</a></li>
 

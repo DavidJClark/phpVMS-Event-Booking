@@ -13,7 +13,7 @@ class Events_admin extends CodonModule
 {
     public function HTMLHead()
     {
-        $this->set('sidebar', 'events/sidebar_events.tpl');
+        $this->set('sidebar', 'events/sidebar_events.php');
     }
 
     public function NavBar()
@@ -35,7 +35,7 @@ class Events_admin extends CodonModule
         {
             $this->set('events', EventsData::get_upcoming_events());
             $this->set('history', EventsData::get_past_events());
-            $this->show('events/events_index.tpl');
+            $this->show('events/events_index');
         }
     }
     public function get_event()
@@ -43,11 +43,11 @@ class Events_admin extends CodonModule
         $id = $_GET[id];
         $this->set('event', EventsData::get_event($id));
         $this->set('signups', EventsData::get_signups($id));
-        $this->show('events/events_event.tpl');
+        $this->show('events/events_event');
     }
     public function new_event()
     {
-        $this->show('events/events_new_form.tpl');
+        $this->show('events/events_new_form');
     }
     protected function save_new_event()
     {
@@ -76,7 +76,7 @@ class Events_admin extends CodonModule
             if(empty($test))
             {
                 $this->set('event', $event);
-                $this->show('events/events_new_form.tpl');
+                $this->show('events/events_new_form');
                 return;
             }
         }
@@ -100,14 +100,14 @@ class Events_admin extends CodonModule
 
         $this->set('events', EventsData::get_upcoming_events());
         $this->set('history', EventsData::get_past_events());
-        $this->show('events/events_index.tpl');
+        $this->show('events/events_index');
     }
     public function edit_event() {
             $id = $_GET[id];
             $event = array();
             $event = EventsData::get_event($id);
             $this->set('event', $event);
-            $this->show('events/events_edit_form.tpl');
+            $this->show('events/events_edit_form');
     }
     protected function save_edit_event()
     {
@@ -146,7 +146,7 @@ class Events_admin extends CodonModule
         $id = $event['id'];
         $this->set('event', EventsData::get_event($id));
         $this->set('signups', EventsData::get_signups($id));
-        $this->show('events/events_event.tpl');
+        $this->show('events/events_event');
     }
     public function remove_signup()
     {
@@ -158,7 +158,7 @@ class Events_admin extends CodonModule
 
         $this->set('event', EventsData::get_event($event));
         $this->set('signups', EventsData::get_signups($event));
-        $this->show('events/events_event.tpl');
+        $this->show('events/events_event');
     }
     public function delete_event()
     {
@@ -168,6 +168,6 @@ class Events_admin extends CodonModule
 
         $this->set('events', EventsData::get_upcoming_events());
         $this->set('history', EventsData::get_past_events());
-        $this->show('events/events_index.tpl');
+        $this->show('events/events_index');
     }
 }

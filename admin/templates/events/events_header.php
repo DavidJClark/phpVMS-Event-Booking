@@ -9,6 +9,6 @@
 //@copyright Copyright (c) 2009-2010, David Clark
 //@license http://creativecommons.org/licenses/by-nc-sa/3.0/
 ?>
-<h4>EVENTSBooking</h4>
-beta 1.3   -   by: simpilot
+<h4>EVENTSBooking 2.0</h4>
+by: simpilotgroup.com
 <hr />
