@@ -11,14 +11,14 @@
 
 class EventsData extends CodonData
 {
-    public function get_events()
+    public static function get_events()
     {
         $query = "SELECT * FROM ".TABLE_PREFIX."events
                     ORDER BY date ASC";
 
         return DB::get_results($query);
     }
-    public function get_upcoming_events()
+    public static function get_upcoming_events()
     {
         $query = "SELECT * FROM ".TABLE_PREFIX."events
                 WHERE date >= NOW()
@@ -26,7 +26,7 @@ class EventsData extends CodonData
 
         return DB::get_results($query);
     }
-    public function get_past_events()
+    public static function get_past_events()
     {
         $query = "SELECT * FROM ".TABLE_PREFIX."events
                 WHERE date < NOW()
@@ -34,26 +34,26 @@ class EventsData extends CodonData
 
         return DB::get_results($query);
     }
-    public function get_event($id)
+    public static function get_event($id)
     {
         $query = "SELECT * FROM ".TABLE_PREFIX."events WHERE id='$id'";
 
         return DB::get_row($query);
     }
-    public function get_signups($id)//probably dont need!
+    public static function get_signups($id)//probably dont need!
     {
         $query = "SELECT * FROM ".TABLE_PREFIX."events_signups WHERE event_id='$id' ORDER BY time ASC";
 
         return DB::get_results($query);
     }
-    public function save_new_event($date, $time, $title, $description, $image, $dep, $arr, $schedule, $slot_limit, $slot_interval, $active)
+    public static function save_new_event($date, $time, $title, $description, $image, $dep, $arr, $schedule, $slot_limit, $slot_interval, $active)
     {
         $query = "INSERT INTO ".TABLE_PREFIX."events (date, time, title, description, image, dep, arr, schedule, slot_limit, slot_interval, active)
                 VALUES ('$date', '$time', '$title', '$description', '$image', '$dep', '$arr', '$schedule', '$slot_limit', '$slot_interval', '$active')";
 
         DB::query($query);
     }
-     public function save_edit_event($date, $time, $title, $description, $image, $dep, $arr, $schedule, $slot_limit, $slot_interval, $active, $id)
+     public static function save_edit_event($date, $time, $title, $description, $image, $dep, $arr, $schedule, $slot_limit, $slot_interval, $active, $id)
     {
         $query = "UPDATE ".TABLE_PREFIX."events SET
          date='$date',
@@ -71,14 +71,14 @@ class EventsData extends CodonData
 
         DB::query($query);
     }
-    public function event_signup($eid, $pid, $time)
+    public static function event_signup($eid, $pid, $time)
     {
         $query = "INSERT INTO ".TABLE_PREFIX."events_signups (event_id, pilot_id, time)
                     VALUES('$eid', '$pid', '$time')";
 
         DB::query($query);
     }
-    public function signup_time($eid, $time)
+    public static function signup_time($eid, $time)
     {
         $query = "SELECT * FROM ".TABLE_PREFIX."events_signups
                     WHERE event_id='$eid'
@@ -86,7 +86,7 @@ class EventsData extends CodonData
 
         return DB::get_row($query);
     }
-    public function check_signup($pid, $eid)
+    public static function check_signup($pid, $eid)
     {
         $query = "SELECT COUNT(*) AS total
                     FROM ".TABLE_PREFIX."events_signups
@@ -95,14 +95,14 @@ class EventsData extends CodonData
 
         return DB::get_row($query);
     }
-    public function remove_signup($id)
+    public static function remove_signup($id)
     {
         $query = "DELETE FROM ".TABLE_PREFIX."events_signups
                     WHERE id='$id'";
 
         DB::query($query);
     }
-    public function remove_pilot_signup($id, $event)
+    public static function remove_pilot_signup($id, $event)
     {
         $query = "DELETE FROM ".TABLE_PREFIX."events_signups
                     WHERE pilot_id='$id'
@@ -110,7 +110,7 @@ class EventsData extends CodonData
 
         DB::query($query);
     }
-    public function delete_event($id)
+    public static function delete_event($id)
     {
         $query = "DELETE FROM ".TABLE_PREFIX."events
                     WHERE id='$id'";
@@ -122,13 +122,13 @@ class EventsData extends CodonData
 
         DB::query($query2);
     }
-    public function add_ranking($pilot_id)
+    public static function add_ranking($pilot_id)
     {
         $query = "SELECT * FROM ".TABLE_PREFIX."events_pilotranks
                     WHERE pilot_id='$pilot_id'";
 
         $data = DB::get_row($query);
-        
+
         if(!$data)
             {
             $query2 = "INSERT INTO ".TABLE_PREFIX."events_pilotranks (pilot_id, ranking)
@@ -146,7 +146,7 @@ class EventsData extends CodonData
             DB::query($query3);
         }
     }
-    public function subtract_ranking($pilot_id)
+    public static function subtract_ranking($pilot_id)
     {
         $query = "SELECT * FROM ".TABLE_PREFIX."events_pilotranks
                     WHERE pilot_id='$pilot_id'";
@@ -170,7 +170,7 @@ class EventsData extends CodonData
             DB::query($query3);
         }
     }
-    public function get_rankings()
+    public static function get_rankings()
     {
         $query = "SELECT * FROM ".TABLE_PREFIX."events_pilotranks
                     ORDER BY ranking DESC";
