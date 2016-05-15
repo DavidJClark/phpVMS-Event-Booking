@@ -13,7 +13,7 @@ class Events_admin extends CodonModule
 {
     public function HTMLHead()
     {
-        $this->set('sidebar', 'events/sidebar_events.php');
+        $this->set('sidebar', 'events/sidebar_events.tpl');
     }
 
     public function NavBar()
